@@ -19,12 +19,13 @@ namespace TinyAssetGenerator
 
         public void ParseDirectory(DirectoryInfo dir, Platform probablePlatform)
         {
-            if (dir.Name.ToLower().Contains("android"))
+            if (dir.Name.ToLower().Contains("droid"))
                 probablePlatform = Platform.Android;
             if (dir.Name.ToLower().Contains("ios"))
-                probablePlatform = Platform.Android;
+                probablePlatform = Platform.iOS;
             if (dir.Name.ToLower().Contains("uwp"))
                 probablePlatform = Platform.UWP;
+            
             foreach (var file in dir.GetFiles())
             {
                 if (HandleFile(file))
@@ -49,6 +50,7 @@ namespace TinyAssetGenerator
             {
                 targetPlatform = Platform.iOS;
             }
+
             if (targetPlatform != Platform.Unknown)
             {
                 //Console.WriteLine($"Moving {file.Name} to {targetPlatform}");
@@ -64,10 +66,7 @@ namespace TinyAssetGenerator
                         Console.WriteLine($"Unhandled platform, skipping {file.Name}");
                         break;
                 }
-                if (targetPlatform == Platform.Android)
-                {
-
-                }
+               
             }
         }
 
